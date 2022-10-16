@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define FUNC_THREAD_NUM 10000
+#define FUNC_THREAD_NUM 100000
 
 int value = 0;
 
