@@ -10,8 +10,8 @@
     - thread_join 으로 모든 thread들의 종료 기다림
     - 모든 동작 종료 후 최종 value 값 출력 (1번)
   */
-
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 
 #define FUNC_THREAD_NUM 100000
@@ -41,8 +41,8 @@ void *sub_thread(void *arg){
 int main(){
     int i;
 
-    pthread_t add_thread_id[FUNC_THREAD_NUM];
-    pthread_t sub_thread_id[FUNC_THREAD_NUM];
+    pthread_t* add_thread_id = (pthread_t*)malloc(sizeof(pthread_t)*FUNC_THREAD_NUM);
+    pthread_t* sub_thread_id = (pthread_t*)malloc(sizeof(pthread_t)*FUNC_THREAD_NUM);
     for(i=0; i<FUNC_THREAD_NUM; i++){
         pthread_create(&add_thread_id[i], NULL, add_thread, NULL);
         pthread_create(&sub_thread_id[i], NULL, sub_thread, NULL);
@@ -52,5 +52,8 @@ int main(){
         pthread_join(sub_thread_id[i], NULL);
     }
     printf("value : %d\n", value);
+
+    free(add_thread_id);
+    free(sub_thread_id);
     return 0;
 }
