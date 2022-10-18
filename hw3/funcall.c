@@ -27,10 +27,12 @@ int value = 0;
 
 void add(){
     value++;
+    printf("add : %d\n", value);
 }
 
 void sub(){
     value--;
+    printf("sub : %d\n", value);
 }
 
 int main(){
